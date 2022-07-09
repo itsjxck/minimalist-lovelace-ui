@@ -15,9 +15,17 @@ hide:
 
 - Author: Everything Smart Home - 2022
 - Credits to the [welcome scenes card](https://ui-lovelace-minimalist.github.io/UI/usage/cards/card_welcome_scenes/) as the basis
-- Version: 1.1.0
+- Version: 1.2.0
 
 ## Changelog
+
+<details>
+<summary>1.2.0</summary>
+  <ul>
+    <h4>Contributor: <a href="https://github.com/itsjxck">itsjxck</a> - 2022-07-09</h4>
+    <li>Add variable to tweak the welcome message splitting over 2 lines</li>
+  </ul>
+</details>
 
 <details>
 <summary>1.1.0</summary>
@@ -41,15 +49,16 @@ This is a welcome card based on the [welcome scenes card](https://ui-lovelace-mi
 
 ## Variables
 
-| Variable                      | Default | Required | Notes                                                                                              |
-| ----------------------------- | ------- | -------- | -------------------------------------------------------------------------------------------------- |
-| ulm_card_esh_welcome_collapse |         | No       | Enables the collapse function. <br> requires an `input_boolean` to track the state                 |
-| ulm_weather                   |         | Yes      | This is your weather provider. <br> Example: `weather.your_provider`                               |
-| entity\_                      |         | Yes      | Support almost all types of entities <br> Scenes do always show as off                             |
-| icon\_                        |         | Yes      | The icon to show                                                                                   |
-| name\_                        |         | Yes      | The name to show                                                                                   |
-| color\_                       |         | Yes      | Color of the icon <br> Can choose between: `blue`, `red`, `green`, `yellow`, `pink`, `purple` <br> |
-| nav\_                         |         | Yes      | The page/view to navigate to                                                                       |
+| Variable                       | Default | Required | Notes                                                                                              |
+| ------------------------------ | ------- | -------- | -------------------------------------------------------------------------------------------------- |
+| ulm_card_esh_welcome_collapse  |         | No       | Enables the collapse function. <br> requires an `input_boolean` to track the state                 |
+| ulm_card_esh_welcome_multiline | true    | No       | Whether the welcome message is split over 2 lines                                                  |
+| ulm_weather                    |         | Yes      | This is your weather provider. <br> Example: `weather.your_provider`                               |
+| entity\_                       |         | Yes      | Support almost all types of entities <br> Scenes do always show as off                             |
+| icon\_                         |         | Yes      | The icon to show                                                                                   |
+| name\_                         |         | Yes      | The name to show                                                                                   |
+| color\_                        |         | Yes      | Color of the icon <br> Can choose between: `blue`, `red`, `green`, `yellow`, `pink`, `purple` <br> |
+| nav\_                          |         | Yes      | The page/view to navigate to                                                                       |
 
 ## Collapse
 
@@ -68,6 +77,7 @@ Do not use `triggers_update: "all"`! This will lead to unwanted behavior with th
   triggers_update: "input_boolean.welcome_toggle"
   variables:
     ulm_card_esh_welcome_collapse: input_boolean.welcome_toggle
+    ulm_card_esh_welcome_multiline: false
     ulm_weather: "weather.your_weather"
     entity_1:
       nav: "house"
