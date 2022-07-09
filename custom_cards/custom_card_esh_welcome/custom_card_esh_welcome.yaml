@@ -117,7 +117,7 @@ card_esh_welcome:
             } else {
               welcome = variables.ulm_hello;
             }
-            return `${welcome},${ulm_card_esh_welcome_multiline ? "<br>" : " "}${user.name}!`;
+            return `${welcome},${variables.ulm_card_esh_welcome_multiline ? "<br>" : " "}${user.name}!`;
           ]]]
         styles:
           name:
