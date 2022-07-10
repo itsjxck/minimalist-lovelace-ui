@@ -1,0 +1,28 @@
+---
+chip_itsjxck_pollen:
+  type: "custom:button-card"
+  template: "chip_mdi_icon_only"
+  variables:
+    ulm_chip_mdi_icon_only_entity: "[[[ return entity ]]]"
+    ulm_chip_mdi_icon_only_icon: >
+      [[[
+        let icon = 'mdi:grass';
+        if (entity?.entity_id?.includes('tree')) icon = 'mdi:tree';
+        if (entity?.entity_id?.includes('weed')) icon = 'mdi:flower';
+        return icon;
+      ]]]
+    ulm_chip_mdi_icon_only_icon_color: >
+      [[[
+        const colours = {
+          none: 'limegreen',
+          very_low: 'deepskyblue',
+          low: 'yellow',
+          medium: 'amber',
+          high: 'orange',
+          very_high: 'red'
+        };
+        return colours[entity.state];
+      ]]]
+  tap_action:
+    action: "more-info"
+  entity: "[[[ return entity ]]]"

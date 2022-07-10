@@ -1,44 +1,11 @@
 ---
-card_esh_welcome:
+card_itsjxck_welcome:
   template: "ulm_language_variables"
   variables:
-    ulm_weather: "[[[ return variables.ulm_weather]]]"
-    ulm_card_esh_welcome_multiline: true
-    entity_1:
-      color: >
-        [[[
-          var colors = ['yellow', 'blue', 'red', 'purple','green', 'pink'];
-          var color = colors[Math.floor(Math.random() * colors.length)];
-          return color;
-        ]]]
-    entity_2:
-      color: >
-        [[[
-          var colors = ['yellow', 'blue', 'red', 'purple','green', 'pink'];
-          var color = colors[Math.floor(Math.random() * colors.length)];
-          return color;
-        ]]]
-    entity_3:
-      color: >
-        [[[
-          var colors = ['yellow', 'blue', 'red', 'purple','green', 'pink'];
-          var color = colors[Math.floor(Math.random() * colors.length)];
-          return color;
-        ]]]
-    entity_4:
-      color: >
-        [[[
-          var colors = ['yellow', 'blue', 'red', 'purple','green', 'pink'];
-          var color = colors[Math.floor(Math.random() * colors.length)];
-          return color;
-        ]]]
-    entity_5:
-      color: >
-        [[[
-          var colors = ['yellow', 'blue', 'red', 'purple','green', 'pink'];
-          var color = colors[Math.floor(Math.random() * colors.length)];
-          return color;
-        ]]]
+    ulm_card_itsjxck_welcome_collapse:
+    ulm_card_itsjxck_welcome_multiline: false
+    ulm_card_itsjxck_welcome_pills: []
+    ulm_card_itsjxck_welcome_chips: []
   show_icon: false
   show_label: true
   show_name: false
@@ -46,7 +13,7 @@ card_esh_welcome:
     grid:
       - grid-template-areas: >
           [[[
-            if(variables.ulm_card_esh_welcome_collapse && states[variables.ulm_card_esh_welcome_collapse].state == 'on'){
+            if(variables.ulm_card_itsjxck_welcome_collapse && states[variables.ulm_card_itsjxck_welcome_collapse].state == 'on'){
               return "\'item1\' \'item2\' ";
             } else {
               return "\'item1\' \'item2\' \'item3\'";
@@ -65,7 +32,7 @@ card_esh_welcome:
       item3:
         - display: >
             [[[
-              if(variables.ulm_card_esh_welcome_collapse && states[variables.ulm_card_esh_welcome_collapse].state == 'on'){
+              if(variables.ulm_card_itsjxck_welcome_collapse && states[variables.ulm_card_itsjxck_welcome_collapse].state == 'on'){
                 return "none";
               } else {
                 return "block";
@@ -74,7 +41,7 @@ card_esh_welcome:
       item4:
         - display: >
             [[[
-              if(variables.ulm_card_esh_welcome_collapse && states[variables.ulm_card_esh_welcome_collapse].state == 'on'){
+              if(variables.ulm_card_itsjxck_welcome_collapse && states[variables.ulm_card_itsjxck_welcome_collapse].state == 'on'){
                 return "none";
               } else {
                 return "block";
@@ -84,10 +51,10 @@ card_esh_welcome:
     item1:
       card:
         type: "custom:button-card"
-        template: "card_esh_welcome_topbar"
+        template: "card_itsjxck_welcome_topbar"
         variables:
-          ulm_card_esh_welcome_collapse: "[[[ return variables.ulm_card_esh_welcome_collapse ]]]"
-          ulm_weather: "[[[ return variables.ulm_weather]]]"
+          ulm_card_itsjxck_welcome_collapse: "[[[ return variables.ulm_card_itsjxck_welcome_collapse ]]]"
+          ulm_card_itsjxck_welcome_chips: "[[[ return variables.ulm_card_itsjxck_welcome_chips ]]]"
         styles:
           card:
             - border-radius: "none"
@@ -105,8 +72,7 @@ card_esh_welcome:
         show_entity_picture: false
         name: |
           [[[
-            var today = new Date();
-            var time = today.getHours()
+            const time = new Date().getHours();
             let welcome = '';
             if (time >= '18'){
               welcome = variables.ulm_evening;
@@ -117,7 +83,7 @@ card_esh_welcome:
             } else {
               welcome = variables.ulm_hello;
             }
-            return `${welcome},${variables.ulm_card_esh_welcome_multiline ? "<br>" : " "}${user.name}!`;
+            return `${welcome},${variables.ulm_card_itsjxck_welcome_multiline ? "<br>" : " "}${user.name}!`;
           ]]]
         styles:
           name:
@@ -139,7 +105,7 @@ card_esh_welcome:
     item3:
       card:
         type: "custom:button-card"
-        template: "card_esh_welcome_nav"
+        template: "card_itsjxck_welcome_nav"
         styles:
           card:
             - border-radius: "none"
@@ -148,13 +114,9 @@ card_esh_welcome:
             - cursor: "default"
             - "--mdc-ripple-press-opacity": 0 # prevent click animation
         variables:
-          entity_1: "[[[ return variables.entity_1 ]]]"
-          entity_2: "[[[ return variables.entity_2 ]]]"
-          entity_3: "[[[ return variables.entity_3 ]]]"
-          entity_4: "[[[ return variables.entity_4 ]]]"
-          entity_5: "[[[ return variables.entity_5 ]]]"
+          pills: "[[[ return variables.ulm_card_itsjxck_welcome_pills.slice(0, 5).filter((e) => e && e.nav); ]]]"
 
-card_esh_welcome_title:
+card_itsjxck_welcome_title:
   tap_action:
     action: "none"
   show_icon: false
@@ -185,7 +147,7 @@ card_esh_welcome_title:
       - cursor: "default"
       - "--mdc-ripple-press-opacity": 0 # prevent click animation
 
-card_esh_welcome_nav:
+card_itsjxck_welcome_nav:
   show_icon: false
   show_name: true
   show_label: false
@@ -193,19 +155,11 @@ card_esh_welcome_nav:
     grid:
       - grid-template-areas: |
           [[[
-            return "'" + [(variables.entity_1?.nav ? 'item1' : ''),
-                        (variables.entity_2?.nav ? 'item2' : ''),
-                        (variables.entity_3?.nav ? 'item3' : ''),
-                        (variables.entity_4?.nav ? 'item4' : ''),
-                        (variables.entity_5?.nav ? 'item5' : '')].join(' ') + "'";
+            return `'${variables.pills.map((_, i) => `item${i+1}`).join(' ')}'`;
           ]]]
       - grid-template-columns: |
           [[[
-            return [(variables.entity_1?.nav ? '1fr' : ''),
-                    (variables.entity_2?.nav ? '1fr' : ''),
-                    (variables.entity_3?.nav ? '1fr' : ''),
-                    (variables.entity_4?.nav ? '1fr' : ''),
-                    (variables.entity_5?.nav ? '1fr' : '')].join(' ');
+            return variables.pills.map(() => `1fr`).join(' ');
           ]]]
       - grid-template-rows: "min-content"
       - justify-items: "center"
@@ -218,84 +172,64 @@ card_esh_welcome_nav:
     item1:
       card:
         type: "custom:button-card"
-        template: "card_esh_welcome_pill_nav"
+        template: "card_itsjxck_welcome_pill_nav"
         variables:
           number_of_nav_pills: |
             [[[
-              return [variables.entity_1?.nav,
-                      variables.entity_2?.nav,
-                      variables.entity_3?.nav,
-                      variables.entity_4?.nav,
-                      variables.entity_5?.nav].filter(el => el !== undefined).length;
+              return variables.pills.length;
             ]]]
-          entity: "[[[ return variables.entity_1; ]]]"
+          pill: "[[[ return variables.pills[0]; ]]]"
     item2:
       card:
         type: "custom:button-card"
-        template: "card_esh_welcome_pill_nav"
+        template: "card_itsjxck_welcome_pill_nav"
         variables:
           number_of_nav_pills: |
             [[[
-              return [variables.entity_1?.nav,
-                      variables.entity_2?.nav,
-                      variables.entity_3?.nav,
-                      variables.entity_4?.nav,
-                      variables.entity_5?.nav].filter(el => el !== undefined).length;
+              return variables.pills.length;
             ]]]
-          entity: "[[[ return variables.entity_2; ]]]"
+          pill: "[[[ return variables.pills[1]; ]]]"
     item3:
       card:
         type: "custom:button-card"
-        template: "card_esh_welcome_pill_nav"
+        template: "card_itsjxck_welcome_pill_nav"
         variables:
           number_of_nav_pills: |
             [[[
-              return [variables.entity_1?.nav,
-                      variables.entity_2?.nav,
-                      variables.entity_3?.nav,
-                      variables.entity_4?.nav,
-                      variables.entity_5?.nav].filter(el => el !== undefined).length;
+              return variables.pills.length;
             ]]]
-          entity: "[[[ return variables.entity_3; ]]]"
+          pill: "[[[ return variables.pills[2]; ]]]"
     item4:
       card:
         type: "custom:button-card"
-        template: "card_esh_welcome_pill_nav"
+        template: "card_itsjxck_welcome_pill_nav"
         variables:
           number_of_nav_pills: |
             [[[
-              return [variables.entity_1?.nav,
-                      variables.entity_2?.nav,
-                      variables.entity_3?.nav,
-                      variables.entity_4?.nav,
-                      variables.entity_5?.nav].filter(el => el !== undefined).length;
+              return variables.pills.length;
             ]]]
-          entity: "[[[ return variables.entity_4; ]]]"
+          pill: "[[[ return variables.pills[3]; ]]]"
     item5:
       card:
         type: "custom:button-card"
-        template: "card_esh_welcome_pill_nav"
+        template: "card_itsjxck_welcome_pill_nav"
         variables:
           number_of_nav_pills: |
             [[[
-              return [variables.entity_1?.nav,
-                      variables.entity_2?.nav,
-                      variables.entity_3?.nav,
-                      variables.entity_4?.nav,
-                      variables.entity_5?.nav].filter(el => el !== undefined).length;
+              return variables.pills.length;
             ]]]
-          entity: "[[[ return variables.entity_5; ]]]"
+          pill: "[[[ return variables.pills[4]; ]]]"
 
-card_esh_welcome_pill_nav:
+card_itsjxck_welcome_pill_nav:
   tap_action:
     action: "navigate"
-    navigation_path: "[[[ return variables.entity?.nav; ]]]"
+    navigation_path: "[[[ return variables.pill?.nav; ]]]"
   show_icon: false
   show_label: false
   show_name: false
   state:
     - operator: "template"
-      value: "[[[ return !variables.entity?.nav; ]]]"
+      value: "[[[ return !variables.pill?.nav; ]]]"
       styles:
         card:
           - display: "none"
@@ -328,17 +262,17 @@ card_esh_welcome_pill_nav:
         type: "custom:button-card"
         tap_action:
           action: "navigate"
-          navigation_path: "[[[ return variables.entity?.nav; ]]]"
+          navigation_path: "[[[ return variables.pill?.nav; ]]]"
         show_icon: true
         show_label: false
         show_name: false
-        icon: "[[[ return variables.entity?.icon ]]]"
+        icon: "[[[ return variables.pill?.icon ]]]"
         styles:
           icon:
-            - color: "[[[ return `rgba(var(--color-${variables.entity?.color}), 1)`;]]]"
+            - color: "[[[ return `rgba(var(--color-${variables.pill?.color}), 1)`;]]]"
             - width: "[[[ return (20 * (1+(5-Math.max(variables.number_of_nav_pills, 3))*0.25)) + 'px'; ]]]"
           img_cell:
-            - background-color: "[[[ return `rgba(var(--color-${variables.entity?.color}), 0.20)`;]]]"
+            - background-color: "[[[ return `rgba(var(--color-${variables.pill?.color}), 0.20)`;]]]"
             - border-radius: "50%"
             - width: "[[[ return (42 * (1+(5-Math.max(variables.number_of_nav_pills, 3))*0.25)) + 'px'; ]]]"
             - height: "[[[ return (42 * (1+(5-Math.max(variables.number_of_nav_pills, 3))*0.25)) + 'px'; ]]]"
@@ -366,10 +300,10 @@ card_esh_welcome_pill_nav:
         type: "custom:button-card"
         tap_action:
           action: "navigate"
-          navigation_path: "[[[ return variables.entity?.nav; ]]]"
+          navigation_path: "[[[ return variables.pill?.nav; ]]]"
         show_icon: false
         show_label: false
-        name: "[[[ return variables.entity?.name ]]]"
+        name: "[[[ return variables.pill?.name ]]]"
         styles:
           name:
             - font-weight: "bold"
@@ -384,7 +318,7 @@ card_esh_welcome_pill_nav:
             - margin-top: "-5px"
             - border-radius: "50px"
 
-card_esh_welcome_topbar:
+card_itsjxck_welcome_topbar:
   show_icon: false
   show_label: false
   show_name: true
@@ -409,10 +343,10 @@ card_esh_welcome_topbar:
           action: "call-service"
           service: "input_boolean.toggle"
           service_data:
-            entity_id: "[[[ return variables.ulm_card_esh_welcome_collapse ]]]"
+            entity_id: "[[[ return variables.ulm_card_itsjxck_welcome_collapse ]]]"
         show_icon: true
         icon: "mdi:chevron-up"
-        entity: "[[[ return variables.ulm_card_esh_welcome_collapse ]]]"
+        entity: "[[[ return variables.ulm_card_itsjxck_welcome_collapse ]]]"
         styles:
           grid:
             - grid-template-areas: "'i'"
@@ -425,7 +359,7 @@ card_esh_welcome_topbar:
                     return "var(--box-shadow)";
                   }
                 ]]]
-            - visibility: "[[[ return variables.ulm_card_esh_welcome_collapse ? 'visible' : 'hidden'; ]]]"
+            - visibility: "[[[ return variables.ulm_card_itsjxck_welcome_collapse ? 'visible' : 'hidden'; ]]]"
             - "--mdc-ripple-press-opacity": 0.12 # allow click animation
         state:
           - value: "on"
@@ -436,26 +370,24 @@ card_esh_welcome_topbar:
     item2:
       card:
         type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            template: "chip_weather_date"
-            variables:
-              ulm_weather: "[[[ return variables.ulm_weather]]]"
-            tap_action:
-              action: "more-info"
-            entity: "[[[ return variables.ulm_weather]]]"
-            styles:
-              card:
-                - width: "100px"
-                - box-shadow: >
-                    [[[
-                      if (hass.themes.darkMode){
-                        return "0px 2px 4px 0px rgba(0,0,0,0.80)";
-                      } else {
-                        return "var(--box-shadow)";
-                      }
-                    ]]]
-                - "--mdc-ripple-press-opacity": 0.12 # allow click animation
+        cards: >
+          [[[
+            return variables.ulm_card_itsjxck_welcome_chips.slice(0, 3).map(({template, variables = {}, entity}) => ({
+              type: 'custom:button-card',
+              template: template ?? 'chip_mdi_icon_state',
+              variables,
+              tap_action: {
+                action: 'more-info'
+              },
+              entity,
+              styles: {
+                card: [
+                  {'box-shadow': hass.themes.darkMode ? '0px 2px 4px 0px rgba(0,0,0,0.80)' : 'var(--box-shadow)'},
+                  {'--mdc-ripple-press-opacity': 0.12}
+                ]
+              }
+            }))
+          ]]]
     item3:
       card:
         type: "custom:button-card"
