@@ -25,12 +25,13 @@ hide:
 | ulm_card_media_player_name                   |         |                  | Name to display for your media-player           |
 | ulm_card_media_player_icon                   |         |                  | Change the icon displayed                       |
 | ulm_card_media_player_enable_art             | false   |                  | Enable album picture on background              |
-| ulm_card_media_player_enable_controls        | false   |                  | Enable controls bellow the title                |
-| ulm_card_media_player_enable_volume_slider   | false   |                  | Enable volume slider bellow controls            |
+| ulm_card_media_player_enable_controls        | false   |                  | Enable controls below the title                 |
+| ulm_card_media_player_enable_volume_slider   | false   |                  | Enable volume slider below controls             |
 | ulm_card_media_player_collapsible            | false   |                  | Controls are collapsible when state is off      |
 | ulm_card_media_player_player_controls_entity | entity  |                  | Change the controlled entity                    |
 | ulm_card_media_player_enable_popup           | false   |                  | Enable pop-up                                   |
 | ulm_card_media_player_more_info              | false   |                  | Displays artist and album info in the sub-label |
+| ulm_card_media_player_power_button           | false   |                  | Show power button                               |
 
 !!! note
   To use `popup_media_player` you need to set the variable `ulm_card_media_player_enable_popup` to `true`. This is a different approach as the other `popup_cards` use.
@@ -41,7 +42,8 @@ hide:
 - type: "custom:button-card"
   template: card_media_player
   entity: media_player.livingroom_shield
-  name: Livingroom Nvidia Shield
+  variables:
+    ulm_card_media_player_name : Livingroom Nvidia Shield
 ```
 
 ??? note "Template Code"
